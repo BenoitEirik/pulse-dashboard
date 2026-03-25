@@ -3,6 +3,8 @@
 
 <template>
   <div class="h-dvh w-screen overflow-hidden bg-background text-foreground antialiased">
-    <NuxtPage />
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
   </div>
 </template>
