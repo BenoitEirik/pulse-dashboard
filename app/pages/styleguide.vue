@@ -1,25 +1,5 @@
 
 <script lang="ts" setup>
-import { Button } from '@/components/ui/button'
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Checkbox } from '@/components/ui/checkbox'
-import {
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form'
-import { toast } from '@/components/ui/toast'
-import { Badge } from '~/components/ui/badge'
-
-import { toTypedSchema } from '@vee-validate/zod'
-import { useForm } from 'vee-validate'
-import { h } from 'vue'
-import * as z from 'zod'
-
 const items = [
   {
     id: 'recents',
@@ -46,30 +26,10 @@ const items = [
     label: 'Documents',
   },
 ] as const
-
-const formSchema = toTypedSchema(z.object({
-  items: z.array(z.string()).refine(value => value.some(item => item), {
-    message: 'You have to select at least one item.',
-  }),
-}))
-
-const { handleSubmit } = useForm({
-  validationSchema: formSchema,
-  initialValues: {
-    items: ['recents', 'home'],
-  },
-})
-
-const onSubmit = handleSubmit((values) => {
-  toast({
-    title: 'You submitted the following values:',
-    description: h('pre', { class: 'mt-2 w-[340px] rounded-md bg-slate-950 p-4' }, h('code', { class: 'text-white' }, JSON.stringify(values, null, 2))),
-  })
-})
 </script>
 
 <template>
-  <div class="flex flex-col items-start gap-2 p-4">
+  <div class="flex flex-col gap-2 items-start p-4">
     <header>
       <h1 class="mb-2 text-3xl font-bold">Styleguide</h1>
       <p class="max-w-3xl leading-relaxed text-muted-foreground">
@@ -135,7 +95,7 @@ const onSubmit = handleSubmit((values) => {
     <br>
 
     <h2 class="text-2xl font-bold">Checkbox</h2>
-    <form @submit="onSubmit">
+    <form @submit="">
       <FormField name="items">
         <FormItem>
           <div class="mb-4">
@@ -164,7 +124,7 @@ const onSubmit = handleSubmit((values) => {
         </FormItem>
       </FormField>
 
-      <div class="mt-4 flex justify-start">
+      <div class="flex justify-start mt-4">
         <Button type="submit">
           Submit
         </Button>
