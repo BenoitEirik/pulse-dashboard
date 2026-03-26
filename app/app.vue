@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <div class="h-dvh w-screen overflow-hidden bg-background text-foreground antialiased">
+  <div class="overflow-hidden w-screen antialiased h-dvh bg-background text-foreground">
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>

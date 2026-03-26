@@ -12,20 +12,15 @@ export default defineNuxtConfig({
       }
     }
   },
-  modules: [
-    '@nuxtjs/tailwindcss',
-    'shadcn-nuxt',
-    'nuxt-lucide-icons'
-  ],
+  modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt', 'nuxt-lucide-icons', '@nuxtjs/color-mode'],
   components: [
     {
-      path: '~/app/components',
-      // We ask Nuxt to ignore .ts files for auto-import
-      // because they are only used for manual exports and types
-      extensions: ['.vue'], 
-      pathPrefix: false,
+      path: '@/components',
+      // shadcn-nuxt manages ui components itself – ignore to avoid .vue vs index.ts conflicts
+      ignore: ['**/ui/**'],
     },
   ],
+  css: ['@/assets/css/tailwind.css'],
   shadcn: {
     /**
      * Prefix for all the imported component
@@ -35,6 +30,10 @@ export default defineNuxtConfig({
      * Directory that the component lives in.
      * @default "./components/ui"
      */
-    componentDir: './components/ui'
+    componentDir: '@/components/ui'
+  },
+  colorMode: {
+    preference: 'system',
+    fallback: 'light'
   }
 })
