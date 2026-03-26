@@ -12,7 +12,13 @@ export default defineNuxtConfig({
       }
     }
   },
-  modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt', 'nuxt-lucide-icons', '@nuxtjs/color-mode'],
+  modules: [
+    '@nuxtjs/tailwindcss',
+    'shadcn-nuxt',
+    '@vueuse/nuxt',
+    '@nuxtjs/color-mode',
+    'nuxt-lucide-icons'
+  ],
   components: [
     {
       path: '@/components',
@@ -20,20 +26,23 @@ export default defineNuxtConfig({
       ignore: ['**/ui/**'],
     },
   ],
-  css: ['@/assets/css/tailwind.css'],
   shadcn: {
     /**
-     * Prefix for all the imported component
+     * Prefix for all the imported component.
+     * @default "Ui"
      */
     prefix: '',
     /**
      * Directory that the component lives in.
-     * @default "./components/ui"
+     * Will respect the Nuxt aliases.
+     * @link https://nuxt.com/docs/api/nuxt-config#alias
+     * @default "@/components/ui"
      */
     componentDir: '@/components/ui'
   },
   colorMode: {
     preference: 'system',
-    fallback: 'light'
+    fallback: 'light',
+    classSuffix: '',
   }
 })

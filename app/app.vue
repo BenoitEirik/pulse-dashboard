@@ -3,7 +3,7 @@
 
 <template>
   <div class="overflow-hidden w-screen antialiased h-dvh bg-background text-foreground">
-    <NuxtLayout>
+    <NuxtLayout name="sidebar">
       <NuxtPage />
     </NuxtLayout>
   </div>
