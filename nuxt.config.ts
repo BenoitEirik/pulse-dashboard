@@ -6,18 +6,18 @@ export default defineNuxtConfig({
     hooks: {
       'pages:extend'(pages) {
         // Remove pages to not include in the production build
-        const filteredPages = pages.filter(page => !page.path.includes('/styleguide'))
-        pages.length = 0
-        pages.push(...filteredPages)
-      }
-    }
+        const filteredPages = pages.filter((page) => !page.path.includes('/styleguide'));
+        pages.length = 0;
+        pages.push(...filteredPages);
+      },
+    },
   },
   modules: [
     '@nuxtjs/tailwindcss',
     'shadcn-nuxt',
     '@vueuse/nuxt',
     '@nuxtjs/color-mode',
-    'nuxt-lucide-icons'
+    'nuxt-lucide-icons',
   ],
   components: [
     {
@@ -38,11 +38,18 @@ export default defineNuxtConfig({
      * @link https://nuxt.com/docs/api/nuxt-config#alias
      * @default "@/components/ui"
      */
-    componentDir: '@/components/ui'
+    componentDir: '@/components/ui',
   },
   colorMode: {
     preference: 'system',
     fallback: 'light',
     classSuffix: '',
-  }
-})
+  },
+  runtimeConfig: {
+    public: {
+      weatherApiBase: 'https://api.weatherapi.com/v1',
+      githubApiBase: 'https://api.github.com',
+      cryptoApiBase: 'https://api.coingecko.com/api/v3',
+    },
+  },
+});
