@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-
+const dashboardStore = useDashboardStore();
 </script>
 
 <template>
