@@ -55,6 +55,12 @@ export const useDashboardStore = defineStore('dashboard', () => {
     removeWidget,
     moveWidget,
   };
+}, {
+  persist: {
+    key: 'persisted-dashboardStore-v1.0',
+    storage: piniaPluginPersistedstate.localStorage(),
+    pick: ['widgets'], 
+  }
 });
 
 
