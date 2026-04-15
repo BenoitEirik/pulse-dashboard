@@ -1,4 +1,4 @@
-import { type NitroFetchOptions } from 'nitropack';
+import type { NitroFetchOptions } from 'nitropack';
 import { toast } from 'vue-sonner';
 
 export const useApi = async <T>(

@@ -36,6 +36,8 @@ const data = {
   ],
 };
 
+const userStore = useUserStore();
+
 const getInitials = (name: string): string => {
   return name
     .split(' ')
@@ -56,12 +58,12 @@ const getInitials = (name: string): string => {
               size="lg"
               class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
               <div
-                class="flex justify-center items-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground aspect-square size-8">
+                class="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
                 <component :is="data.app.logo" class="size-4" />
               </div>
-              <div class="grid flex-1 text-sm leading-tight text-left">
-                <span class="font-semibold truncate">{{ data.app.title }}</span>
-                <span class="text-xs truncate">{{ data.app.subTitle }}</span>
+              <div class="grid flex-1 text-left text-sm leading-tight">
+                <span class="truncate font-semibold">{{ data.app.title }}</span>
+                <span class="truncate text-xs">{{ data.app.subTitle }}</span>
               </div>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -92,14 +94,14 @@ const getInitials = (name: string): string => {
                 <SidebarMenuButton
                   size="lg"
                   class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
-                  <Avatar class="w-8 h-8 rounded-lg">
+                  <Avatar class="h-8 w-8 rounded-lg">
                     <AvatarFallback class="rounded-lg">
-                      {{ getInitials(data.user.name) }}
+                      {{ getInitials(userStore.account.name) }}
                     </AvatarFallback>
                   </Avatar>
-                  <div class="grid flex-1 text-sm leading-tight text-left">
-                    <span class="font-semibold truncate">{{ data.user.name }}</span>
-                    <span class="text-xs truncate">{{ data.user.email }}</span>
+                  <div class="grid flex-1 text-left text-sm leading-tight">
+                    <span class="truncate font-semibold">{{ userStore.account.name }}</span>
+                    <span class="truncate text-xs">{{ userStore.account.email }}</span>
                   </div>
                   <LucideChevronsUpDown class="ml-auto size-4" />
                 </SidebarMenuButton>
@@ -128,13 +130,10 @@ const getInitials = (name: string): string => {
       <SidebarRail />
     </Sidebar>
     <SidebarInset>
-      <header class="flex sticky top-0 gap-2 items-center h-14 shrink-0 bg-background">
-        <div class="flex flex-1 gap-2 items-center px-3">
+      <header class="bg-background sticky top-0 flex h-14 shrink-0 items-center gap-2">
+        <div class="flex flex-1 items-center gap-2 px-3">
           <SidebarTrigger />
-          <Separator
-            orientation="vertical"
-            class="mr-2 data-[orientation=vertical]:h-4"
-          />
+          <Separator orientation="vertical" class="mr-2 data-[orientation=vertical]:h-4" />
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem class="line-clamp-1">
@@ -142,10 +141,7 @@ const getInitials = (name: string): string => {
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
-          <Separator
-            orientation="vertical"
-            class="ml-auto data-[orientation=vertical]:h-4"
-          />
+          <Separator orientation="vertical" class="ml-auto data-[orientation=vertical]:h-4" />
           <ThemeToggle />
         </div>
       </header>
