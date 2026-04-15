@@ -19,6 +19,7 @@
     "lucide-vue-next": "^1.0.0",
     "nuxt": "^4.4.2",
     "nuxt-lucide-icons": "2.1.0",
+    "pinia-plugin-persistedstate": "^4.7.1",
     "reka-ui": "^2.9.2",
     "shadcn-nuxt": "2.4.3",
     "tailwind-merge": "^3.5.0",

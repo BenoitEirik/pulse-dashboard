@@ -19,6 +19,7 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     'nuxt-lucide-icons',
     '@pinia/nuxt',
+    'pinia-plugin-persistedstate/nuxt'
   ],
   components: [
     {

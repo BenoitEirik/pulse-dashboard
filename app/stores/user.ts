@@ -14,4 +14,10 @@ export const useUserStore = defineStore('user', () => {
     preferences,
     account,
   };
+}, {
+  persist: {
+    key: 'persisted-userStore-v1.0',
+    storage: piniaPluginPersistedstate.localStorage(),
+    pick: ['preferences', 'account'],
+  }
 });
