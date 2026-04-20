@@ -1,18 +1,37 @@
 <script lang="ts" setup>
 const dashboardStore = useDashboardStore();
+
+// https://api.open-meteo.com/v1/forecast?latitude=48.0021&longitude=0.2025&current=weather_code,temperature_2m,wind_speed_10m,wind_direction_10m&timezone=Europe%2FBerlin&past_days=0&forecast_days=1
+dashboardStore.widgets.push({
+  id: 'test-weather',
+  type: 'weather',
+  config: {
+    apiName: 'weather',
+    endpoint: '/v1/forecast',
+    params: {
+      latitude: 48.0021,
+      longitude: 0.2025,
+      current: 'weather_code,temperature_2m,wind_speed_10m,wind_direction_10m',
+      timezone: 'Europe/Berlin',
+      past_days: 0,
+      forecast_days: 1,
+    },
+  },
+  status: 'idle',
+  data: {},
+});
 </script>
 
 <template>
-  <div class="flex flex-col flex-1 gap-4 p-4 pt-0">
-        <div class="grid auto-rows-min gap-4 md:grid-cols-3">
-          <div class="rounded-xl aspect-video bg-muted/50" />
-          <div class="rounded-xl aspect-video bg-muted/50" />
-          <div class="rounded-xl aspect-video bg-muted/50" />
-        </div>
-        <div class="flex-1 min-h-screen rounded-xl bg-muted/50 md:min-h-min" />
+  <div class="flex flex-1 flex-col gap-4 p-4 pt-0">
+    <div class="grid auto-rows-min gap-4 grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3">
+      <div class="bg-muted/50 aspect-video lg:aspect-auto rounded-xl">
+        <WeatherWidget widgetId="test-weather" />
       </div>
+      <div class="bg-muted/50 aspect-video rounded-xl" />
+      <div class="bg-muted/50 aspect-video rounded-xl" />
+    </div>
+  </div>
 </template>
 
-<style>
-
-</style>
+<style></style>
