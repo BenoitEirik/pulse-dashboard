@@ -1,6 +1,5 @@
-export interface CryptoResponse {
-  // TODO: complete from Crypto API documentation
-  price: number;
-  change: number;
-  marketCap: number;
+interface CryptoHistoryResponse {
+  prices: [number, number][];
+  market_caps: [number, number][];
+  total_volumes: [number, number][];
 }

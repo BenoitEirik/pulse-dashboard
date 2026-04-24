@@ -1,4 +1,4 @@
-export interface WeatherResponse {
+interface WeatherResponse {
   current: {
     time: string;
     interval: number;

@@ -20,14 +20,33 @@ dashboardStore.widgets.push({
   status: 'idle',
   data: {},
 });
+
+// https://api.coingecko.com/api/v3/simple/price?vs_currencies=usd&ids=bitcoin&x_cg_demo_api_key=CG-hPPq6o751tyfCRVmDzrkKbdJ
+dashboardStore.widgets.push({
+  id: 'test-crypto',
+  type: 'crypto',
+  config: {
+    apiName: 'crypto',
+    endpoint: '/coins/bitcoin/market_chart',
+    params: {
+      vs_currency: 'eur',
+      days: '1',
+      x_cg_demo_api_key: useRuntimeConfig().public.coingecko_api_key,
+    },
+  },
+  status: 'idle',
+  data: {},
+});
 </script>
 
 <template>
   <div class="flex flex-1 flex-col gap-4 p-4 pt-0">
-    <div class="grid auto-rows-min gap-4 grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3">
-      <div class="bg-muted/50 aspect-video lg:aspect-auto rounded-xl">
+    <div class="grid auto-rows-min grid-cols-1 gap-4 lg:grid-cols-2 2xl:grid-cols-3">
+      <div class="bg-muted/50 aspect-video rounded-xl lg:aspect-auto">
         <WeatherWidget widgetId="test-weather" />
       </div>
+      <CryptoWidget widgetId="test-crypto" />
+      <pre class="bg-blue-500">"{{ useRuntimeConfig().public.coingeckoApiKey }}"</pre>
       <div class="bg-muted/50 aspect-video rounded-xl" />
       <div class="bg-muted/50 aspect-video rounded-xl" />
     </div>
