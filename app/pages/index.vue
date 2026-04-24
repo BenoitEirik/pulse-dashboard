@@ -37,6 +37,19 @@ dashboardStore.widgets.push({
   status: 'idle',
   data: {},
 });
+
+// https://api.github.com/users/benoiteirik
+dashboardStore.widgets.push({
+  id: 'test-github',
+  type: 'github',
+  config: {
+    apiName: 'github',
+    endpoint: '/users/benoiteirik',
+    params: {},
+  },
+  status: 'idle',
+  data: {},
+});
 </script>
 
 <template>
@@ -46,9 +59,7 @@ dashboardStore.widgets.push({
         <WeatherWidget widgetId="test-weather" />
       </div>
       <CryptoWidget widgetId="test-crypto" />
-      <pre class="bg-blue-500">"{{ useRuntimeConfig().public.coingeckoApiKey }}"</pre>
-      <div class="bg-muted/50 aspect-video rounded-xl" />
-      <div class="bg-muted/50 aspect-video rounded-xl" />
+      <GithubWidget widgetId="test-github" />
     </div>
   </div>
 </template>
