@@ -2,6 +2,7 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
+  ssr: false,
   $production: {
     hooks: {
       'pages:extend'(pages) {
@@ -19,7 +20,7 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     'nuxt-lucide-icons',
     '@pinia/nuxt',
-    'pinia-plugin-persistedstate/nuxt'
+    'pinia-plugin-persistedstate/nuxt',
   ],
   components: [
     {
@@ -49,9 +50,15 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      weatherApiBase: 'https://api.weatherapi.com/v1',
+      weatherApiBase: 'https://api.open-meteo.com',
       githubApiBase: 'https://api.github.com',
       cryptoApiBase: 'https://api.coingecko.com/api/v3',
+      coingeckoApiKey: '',
+    },
+  },
+  vite: {
+    optimizeDeps: {
+      include: ['vue-chartjs', 'chart.js'],
     },
   },
 });
