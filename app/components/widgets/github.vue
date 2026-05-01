@@ -46,7 +46,7 @@ const openProfile = () => {
         <div class="flex items-center gap-4">
           <Avatar class="h-16 w-16 border-2 border-primary/10">
             <AvatarImage :src="profile.avatar_url" :alt="profile.login" />
-            <AvatarFallback>{{ profile.login.slice(0, 2).toUpperCase() }}</AvatarFallback>
+            <AvatarFallback><LucideUser2 /></AvatarFallback>
           </Avatar>
           <div class="overflow-hidden">
             <CardTitle class="text-base font-medium truncate text-foreground md:text-lg lg:text-xl xl:text-2xl">

@@ -3,6 +3,12 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   ssr: false,
+  app: {
+    head: {
+      title: 'Pulse Dashboard',
+      titleTemplate: '%s - Pulse Dashboard',
+    },
+  },
   $production: {
     hooks: {
       'pages:extend'(pages) {
@@ -21,6 +27,7 @@ export default defineNuxtConfig({
     'nuxt-lucide-icons',
     '@pinia/nuxt',
     'pinia-plugin-persistedstate/nuxt',
+    '@nuxt/icon',
   ],
   components: [
     {
@@ -47,6 +54,16 @@ export default defineNuxtConfig({
     preference: 'system',
     fallback: 'light',
     classSuffix: '',
+  },
+  icon: {
+    mode: 'css',
+    cssLayer: 'base',
+    customCollections: [
+      {
+        prefix: 'asset-icons',
+        dir: './app/assets/icons',
+      },
+    ],
   },
   runtimeConfig: {
     public: {

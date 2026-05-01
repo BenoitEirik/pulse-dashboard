@@ -37,19 +37,10 @@ const data = {
 };
 
 const userStore = useUserStore();
-
-const getInitials = (name: string): string => {
-  return name
-    .split(' ')
-    .map((word) => word.charAt(0))
-    .join('')
-    .toUpperCase()
-    .slice(0, 2);
-};
 </script>
 
 <template>
-  <SidebarProvider>
+  <SidebarProvider class="h-svh overflow-hidden">
     <Sidebar>
       <SidebarHeader>
         <SidebarMenu>
@@ -129,7 +120,7 @@ const getInitials = (name: string): string => {
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
-    <SidebarInset>
+    <SidebarInset class="overflow-hidden">
       <header class="bg-background sticky top-0 flex h-14 shrink-0 items-center gap-2">
         <div class="flex flex-1 items-center gap-2 px-3">
           <SidebarTrigger />
@@ -145,7 +136,9 @@ const getInitials = (name: string): string => {
           <ThemeToggle />
         </div>
       </header>
-      <slot />
+      <div class="flex-1 overflow-y-auto">
+        <slot />
+      </div>
     </SidebarInset>
   </SidebarProvider>
 </template>
