@@ -68,6 +68,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       weatherApiBase: 'https://api.open-meteo.com',
+      geocodingApiBase: 'https://geocoding-api.open-meteo.com',
       githubApiBase: 'https://api.github.com',
       cryptoApiBase: 'https://api.coingecko.com/api/v3',
       coingeckoApiKey: '',

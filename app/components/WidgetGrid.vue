@@ -1,6 +1,8 @@
 <script setup lang="ts">
 const store = useDashboardStore();
 const isCatalogOpen = ref(false);
+const isConfigDialogOpen = ref(false);
+const selectedWidgetType = ref<WidgetType | null>(null);
 
 function openCatalog() {
   isCatalogOpen.value = true;
@@ -8,6 +10,12 @@ function openCatalog() {
 
 function closeCatalog() {
   isCatalogOpen.value = false;
+}
+
+function onWidgetSelect(type: WidgetType) {
+  closeCatalog();
+  selectedWidgetType.value = type;
+  isConfigDialogOpen.value = true;
 }
 </script>
 
@@ -41,8 +49,13 @@ function closeCatalog() {
           <SheetDescription> Choisissez un widget à ajouter à votre dashboard </SheetDescription>
         </SheetHeader>
 
-        <WidgetCatalog @close="closeCatalog" />
+        <WidgetCatalog @close="closeCatalog" @select="onWidgetSelect" />
       </SheetContent>
     </Sheet>
+
+    <WidgetConfigDialog
+      v-model:open="isConfigDialogOpen"
+      :widget-type="selectedWidgetType"
+    />
   </div>
 </template>

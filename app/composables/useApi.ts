@@ -2,13 +2,15 @@ import type { NitroFetchOptions } from 'nitropack';
 import { toast } from 'vue-sonner';
 
 export const useApi = async <T>(
-  apiName: 'weather' | 'crypto' | 'github',
+  apiNameOrBaseUrl: 'weather' | 'geocoding' | 'crypto' | 'github' | string,
   endpoint: string,
   options?: NitroFetchOptions<any>
 ) => {
   const config = useRuntimeConfig();
 
-  const baseUrl = config.public[`${apiName}ApiBase` as keyof typeof config.public] as string;
+  const baseUrl = apiNameOrBaseUrl.startsWith('http')
+    ? apiNameOrBaseUrl
+    : (config.public[`${apiNameOrBaseUrl}ApiBase` as keyof typeof config.public] as string);
 
   try {
     const data = await $fetch<T>(endpoint, {
