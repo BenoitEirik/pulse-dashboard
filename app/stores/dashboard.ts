@@ -18,6 +18,7 @@ export const useDashboardStore = defineStore(
       const { data, error } = await useApi(widget.config.apiName, widget.config.endpoint, {
         method: 'GET',
         query: widget.config.params,
+        headers: widget.config.headers,
       });
 
       if (error) {

@@ -17,10 +17,6 @@ export const useApi = async <T>(
       baseURL: baseUrl,
       ...options,
 
-      onRequest({ request, options }) {
-        // TODO: add authentication headers & more if needed
-      },
-
       onResponseError({ response }) {
         const status = response.status;
         const errorData = response._data;

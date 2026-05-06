@@ -72,6 +72,9 @@ export default defineNuxtConfig({
       githubApiBase: 'https://api.github.com',
       cryptoApiBase: 'https://api.coingecko.com/api/v3',
       coingeckoApiKey: '',
+      tmdbApiBase: 'https://api.themoviedb.org/3',
+      tmdbAccessToken: '',
+      nasaApodApiBase: 'https://api.nasa.gov',
     },
   },
   vite: {
