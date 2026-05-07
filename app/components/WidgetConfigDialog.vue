@@ -2,6 +2,7 @@
 const props = defineProps<{
   open: boolean;
   widgetType: WidgetType | null;
+  widgetId: string | null;
 }>();
 
 const emit = defineEmits<{
@@ -9,6 +10,8 @@ const emit = defineEmits<{
 }>();
 
 const store = useDashboardStore();
+
+const isEditing = computed(() => !!props.widgetId);
 
 const widgetInfo = computed(() => {
   if (!props.widgetType) return null;
@@ -22,17 +25,25 @@ const configComponent = computed(() => {
 
 function onSubmit(config: DashboardWidget['config']) {
   if (!props.widgetType) return;
-  store.addWidget(props.widgetType, config);
+  if (isEditing.value && props.widgetId) {
+    store.updateWidget(props.widgetId, config);
+  } else {
+    store.addWidget(props.widgetType, config);
+  }
   emit('update:open', false);
+}
+
+function onOpenChange(open: boolean) {
+  emit('update:open', open);
 }
 </script>
 
 <template>
-  <Dialog :open="props.open" @update:open="emit('update:open', $event)">
+  <Dialog :open="props.open" @update:open="onOpenChange">
     <DialogContent>
       <DialogHeader>
         <DialogTitle>
-          {{ widgetInfo?.name || 'Configuration' }}
+          {{ isEditing ? 'Modifier' : 'Ajouter' }} — {{ widgetInfo?.name || 'Configuration' }}
         </DialogTitle>
         <DialogDescription>
           {{ widgetInfo?.description || '' }}
@@ -40,7 +51,11 @@ function onSubmit(config: DashboardWidget['config']) {
       </DialogHeader>
 
       <div class="py-4">
-        <component :is="configComponent" v-if="configComponent" @submit="onSubmit" />
+        <component
+          :is="configComponent"
+          v-if="configComponent"
+          :mode="isEditing ? 'edit' : 'create'"
+          @submit="onSubmit" />
         <p v-else class="text-muted-foreground text-center text-sm">
           Impossible de configurer ce widget.
         </p>

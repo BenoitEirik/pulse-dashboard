@@ -45,6 +45,16 @@ export const useDashboardStore = defineStore(
       widgets.value = widgets.value.filter((w) => w.id !== widgetId);
     }
 
+    function updateWidget(widgetId: string, config: DashboardWidget['config']) {
+      const widget = widgets.value.find((w) => w.id === widgetId);
+      if (!widget) {
+        toast.error('Widget not found');
+        return;
+      }
+      widget.config = config;
+      fetchWidgetData(widgetId);
+    }
+
     function moveWidget(fromIndex: number, toIndex: number) {
       const widget = widgets.value.splice(fromIndex, 1)[0];
       if (widget) {
@@ -59,6 +69,7 @@ export const useDashboardStore = defineStore(
       fetchWidgetData,
       addWidget,
       removeWidget,
+      updateWidget,
       moveWidget,
     };
   },

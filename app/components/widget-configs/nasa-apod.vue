@@ -1,16 +1,20 @@
 <script setup lang="ts">
+const props = defineProps<{
+  mode?: 'create' | 'edit';
+}>();
+
 const emit = defineEmits<{
   submit: [config: DashboardWidget['config']];
 }>();
 
-const mode = ref<'today' | 'random'>('today');
+const apodMode = ref<'today' | 'random'>('today');
 
 function submit() {
   const params: Record<string, any> = {
     api_key: 'DEMO_KEY',
   };
 
-  if (mode.value === 'random') {
+  if (apodMode.value === 'random') {
     params.count = 1;
   }
 
@@ -30,22 +34,24 @@ function submit() {
         <Button
           variant="outline"
           size="sm"
-          :class="mode === 'today' && 'bg-primary text-primary-foreground hover:bg-primary/90'"
-          @click="mode = 'today'">
+          :class="apodMode === 'today' && 'bg-primary text-primary-foreground hover:bg-primary/90'"
+          @click="apodMode = 'today'">
           Aujourd'hui
         </Button>
         <Button
           variant="outline"
           size="sm"
-          :class="mode === 'random' && 'bg-primary text-primary-foreground hover:bg-primary/90'"
-          @click="mode = 'random'">
+          :class="apodMode === 'random' && 'bg-primary text-primary-foreground hover:bg-primary/90'"
+          @click="apodMode = 'random'">
           Aléatoire
         </Button>
       </div>
     </div>
 
     <div class="flex justify-end pt-2">
-      <Button @click="submit">Ajouter le widget</Button>
+      <Button @click="submit">
+        {{ props.mode === 'edit' ? 'Enregistrer' : 'Ajouter le widget' }}
+      </Button>
     </div>
   </div>
 </template>

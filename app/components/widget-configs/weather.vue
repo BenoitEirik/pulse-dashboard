@@ -10,6 +10,10 @@ interface GeocodingResult {
   admin1?: string;
 }
 
+const props = defineProps<{
+  mode?: 'create' | 'edit';
+}>();
+
 const emit = defineEmits<{
   submit: [config: DashboardWidget['config']];
 }>();
@@ -118,7 +122,9 @@ function submit() {
     </div>
 
     <div class="flex justify-end pt-2">
-      <Button :disabled="!selectedCity" @click="submit"> Ajouter le widget </Button>
+      <Button :disabled="!selectedCity" @click="submit">
+        {{ props.mode === 'edit' ? 'Enregistrer' : 'Ajouter le widget' }}
+      </Button>
     </div>
   </div>
 </template>

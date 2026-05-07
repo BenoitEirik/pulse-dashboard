@@ -1,4 +1,8 @@
 <script setup lang="ts">
+const props = defineProps<{
+  mode?: 'create' | 'edit';
+}>();
+
 const emit = defineEmits<{
   submit: [config: DashboardWidget['config']];
 }>();
@@ -54,7 +58,9 @@ function submit() {
     </div>
 
     <div class="flex justify-end pt-2">
-      <Button @click="submit">Ajouter le widget</Button>
+      <Button @click="submit">
+        {{ props.mode === 'edit' ? 'Enregistrer' : 'Ajouter le widget' }}
+      </Button>
     </div>
   </div>
 </template>

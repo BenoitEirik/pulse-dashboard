@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const props = defineProps<{ widgetId: string }>();
 const store = useDashboardStore();
+const { openEditor } = useWidgetEditor();
 
 const widget = computed(() => store.widgets.find((w) => w.id === props.widgetId));
 const component = computed(() => (widget.value ? WIDGET_COMPONENTS[widget.value.type] : null));
@@ -12,10 +13,20 @@ const remove = () => store.removeWidget(props.widgetId);
   <div class="group relative h-full w-full">
     <div
       class="absolute top-2 right-2 z-10 flex gap-1 opacity-0 transition-opacity group-hover:opacity-100">
-      <Button variant="secondary" size="icon" class="h-8 w-8 shadow-md">
+      <Button
+        variant="secondary"
+        size="icon"
+        class="h-8 w-8 shadow-sm"
+        aria-label="Modifier le widget"
+        @click="openEditor(widgetId)">
         <LucideSettings2 class="h-4 w-4" />
       </Button>
-      <Button variant="destructive" size="icon" class="h-8 w-8 shadow-md" @click="remove">
+      <Button
+        variant="destructive"
+        size="icon"
+        class="h-8 w-8 shadow-sm"
+        aria-label="Supprimer le widget"
+        @click="remove">
         <LucideTrash2 class="h-4 w-4" />
       </Button>
     </div>

@@ -45,7 +45,7 @@ function openImage() {
       </div>
 
       <template v-else-if="data">
-        <div v-if="data.media_type === 'image'" class="relative h-full border">
+        <div v-if="data.media_type === 'image'" class="relative h-full border" :title="data.title">
           <img
             :src="data.url"
             :alt="data.title"

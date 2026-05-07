@@ -1,8 +1,30 @@
 <script setup lang="ts">
 const store = useDashboardStore();
 const isCatalogOpen = ref(false);
-const isConfigDialogOpen = ref(false);
 const selectedWidgetType = ref<WidgetType | null>(null);
+
+const { editingWidgetId, closeEditor } = useWidgetEditor();
+
+const editingWidgetType = computed<WidgetType | null>(() => {
+  if (!editingWidgetId.value) return null;
+  const widget = store.widgets.find((w) => w.id === editingWidgetId.value);
+  return widget?.type ?? null;
+});
+
+const dialogWidgetType = computed<WidgetType | null>(() => {
+  if (editingWidgetId.value) return editingWidgetType.value;
+  return selectedWidgetType.value;
+});
+
+const isConfigDialogOpen = computed({
+  get: () => !!selectedWidgetType.value || !!editingWidgetId.value,
+  set: (val) => {
+    if (!val) {
+      selectedWidgetType.value = null;
+      closeEditor();
+    }
+  },
+});
 
 function openCatalog() {
   isCatalogOpen.value = true;
@@ -12,10 +34,9 @@ function closeCatalog() {
   isCatalogOpen.value = false;
 }
 
-function onWidgetSelect(type: WidgetType) {
+function onCatalogSelect(type: WidgetType) {
   closeCatalog();
   selectedWidgetType.value = type;
-  isConfigDialogOpen.value = true;
 }
 </script>
 
@@ -28,7 +49,7 @@ function onWidgetSelect(type: WidgetType) {
     </div>
 
     <div
-      class="grid grid-cols-1 gap-4 overflow-y-auto lg:grid-cols-2 lg:gap-6 2xl:grid-cols-3 h-full">
+      class="grid h-full grid-cols-1 gap-4 overflow-y-auto lg:grid-cols-2 lg:gap-6 2xl:grid-cols-3">
       <WidgetShell v-for="widget in store.widgets" :key="widget.id" :widget-id="widget.id" />
 
       <button
@@ -49,13 +70,13 @@ function onWidgetSelect(type: WidgetType) {
           <SheetDescription> Choisissez un widget à ajouter à votre dashboard </SheetDescription>
         </SheetHeader>
 
-        <WidgetCatalog @close="closeCatalog" @select="onWidgetSelect" />
+        <WidgetCatalog @close="closeCatalog" @select="onCatalogSelect" />
       </SheetContent>
     </Sheet>
 
     <WidgetConfigDialog
       v-model:open="isConfigDialogOpen"
-      :widget-type="selectedWidgetType"
-    />
+      :widget-type="dialogWidgetType"
+      :widget-id="editingWidgetId" />
   </div>
 </template>
