@@ -32,7 +32,7 @@ const remove = () => store.removeWidget(props.widgetId);
     </div>
 
     <div
-      class="absolute top-2 left-2 z-10 cursor-grab opacity-0 group-hover:opacity-100 active:cursor-grabbing">
+      class="drag-handle absolute top-2 left-2 z-10 cursor-grab opacity-0 group-hover:opacity-100 active:cursor-grabbing">
       <LucideGripVertical class="text-muted-foreground h-4 w-4" />
     </div>
 

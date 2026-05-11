@@ -1,7 +1,16 @@
 <script setup lang="ts">
+import { useSortable } from '@vueuse/integrations/useSortable';
+
 const store = useDashboardStore();
 const isCatalogOpen = ref(false);
 const selectedWidgetType = ref<WidgetType | null>(null);
+const gridRef = ref<HTMLElement | null>(null);
+
+useSortable(gridRef, store.widgets, {
+  animation: 150,
+  handle: '.drag-handle',
+  draggable: '.widget-item',
+});
 
 const { editingWidgetId, closeEditor } = useWidgetEditor();
 
@@ -49,8 +58,13 @@ function onCatalogSelect(type: WidgetType) {
     </div>
 
     <div
+      ref="gridRef"
       class="grid h-full grid-cols-1 gap-4 overflow-y-auto lg:grid-cols-2 lg:gap-6 2xl:grid-cols-3">
-      <WidgetShell v-for="widget in store.widgets" :key="widget.id" :widget-id="widget.id" />
+      <WidgetShell
+        v-for="widget in store.widgets"
+        :key="widget.id"
+        class="widget-item"
+        :widget-id="widget.id" />
 
       <button
         class="border-border hover:bg-accent/50 group flex min-h-[200px] flex-col items-center justify-center rounded-xl border-2 border-dashed transition-colors"
@@ -80,3 +94,18 @@ function onCatalogSelect(type: WidgetType) {
       :widget-id="editingWidgetId" />
   </div>
 </template>
+
+<style scoped>
+:deep(.sortable-ghost) {
+  opacity: 0.4;
+  background-color: hsl(var(--accent));
+  border-radius: 0.75rem;
+}
+:deep(.sortable-drag) {
+  opacity: 1;
+  box-shadow:
+    0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+  border-radius: 0.75rem;
+}
+</style>
