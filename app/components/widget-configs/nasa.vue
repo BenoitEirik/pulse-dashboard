@@ -19,7 +19,7 @@ function submit() {
   }
 
   emit('submit', {
-    apiName: 'nasa-apod',
+    apiName: 'nasa',
     endpoint: '/planetary/apod',
     params,
   });

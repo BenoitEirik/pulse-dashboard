@@ -23,16 +23,16 @@ const data = {
       url: '/',
       icon: LucideLayoutDashboard,
     },
-    {
-      name: 'Analytics',
-      url: '#',
-      icon: LucideChartColumn,
-    },
-    {
-      name: 'Settings',
-      url: '#',
-      icon: LucideSettings,
-    },
+    // {
+    //   name: 'Analytics',
+    //   url: '#',
+    //   icon: LucideChartColumn,
+    // },
+    // {
+    //   name: 'Settings',
+    //   url: '#',
+    //   icon: LucideSettings,
+    // },
   ],
 };
 

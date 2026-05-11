@@ -25,7 +25,6 @@ export const useDashboardStore = defineStore(
         widget.status = 'error';
       } else {
         widget.status = 'success';
-        console.info('Widget data fetched', data);
         widget.data = data as Record<string, any>;
       }
     }

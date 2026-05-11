@@ -36,7 +36,7 @@ export const WIDGET_CATALOG: WidgetCatalogItem[] = [
     icon: 'lucide:calendar-days',
   },
   {
-    type: 'nasa-apod',
+    type: 'nasa',
     name: 'NASA APOD',
     description: "L'image astronomique du jour",
     icon: 'simple-icons:nasa',

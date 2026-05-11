@@ -13,8 +13,6 @@ const timeWindow = ref<'day' | 'week'>('day');
 function submit() {
   const token = useRuntimeConfig().public.tmdbAccessToken;
 
-  console.log('TMDB token:', token);
-
   emit('submit', {
     apiName: 'tmdb',
     endpoint: `/trending/${mediaType.value}/${timeWindow.value}`,

@@ -1,4 +1,4 @@
-type WidgetType = 'weather' | 'crypto' | 'github' | 'tmdb' | 'flags' | 'theochrone' | 'nasa-apod';
+type WidgetType = 'weather' | 'crypto' | 'github' | 'tmdb' | 'flags' | 'theochrone' | 'nasa';
 
 interface DashboardWidget {
   id: string;

@@ -8,7 +8,6 @@ const widget = computed(() => store.widgets.find((w) => w.id === props.widgetId)
 const iconUrl = ref<string>('');
 
 onMounted(async () => {
-  console.log('Weather widget mounted', widget.value);
   if (widget.value?.status === 'idle') {
     await store.fetchWidgetData(props.widgetId);
   }

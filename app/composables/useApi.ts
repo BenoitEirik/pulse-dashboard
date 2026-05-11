@@ -2,7 +2,7 @@ import type { NitroFetchOptions } from 'nitropack';
 import { toast } from 'vue-sonner';
 
 export const useApi = async <T>(
-  apiNameOrBaseUrl: 'weather' | 'geocoding' | 'crypto' | 'github' | string,
+  apiNameOrBaseUrl: WidgetType | string,
   endpoint: string,
   options?: NitroFetchOptions<any>
 ) => {
@@ -26,11 +26,6 @@ export const useApi = async <T>(
         toast.error(`API Error (${status})`, {
           description: message,
         });
-      },
-
-      onResponse({ response }) {
-        // TODO: log response for debugging
-        console.log('Response:', response);
       },
     });
 

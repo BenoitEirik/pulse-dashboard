@@ -12,7 +12,11 @@ const props = defineProps<{ widgetId: string }>();
 const store = useDashboardStore();
 
 const widget = computed(() => store.widgets.find((w) => w.id === props.widgetId));
-const data = computed<ApodData | null>(() => (widget.value?.data as ApodData | null) ?? null);
+const data = computed<ApodData | null>(() => {
+  const d = widget.value?.data;
+  if (Array.isArray(d)) return (d[0] as ApodData) ?? null;
+  return (d as ApodData | null) ?? null;
+});
 
 onMounted(async () => {
   if (widget.value?.status === 'idle') {
@@ -45,7 +49,7 @@ function openImage() {
       </div>
 
       <template v-else-if="data">
-        <div v-if="data.media_type === 'image'" class="relative h-full border" :title="data.title">
+        <div v-if="data.media_type === 'image'" class="relative h-full" :title="data.title">
           <img
             :src="data.url"
             :alt="data.title"
