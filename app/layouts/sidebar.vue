@@ -37,6 +37,7 @@ const data = {
 };
 
 const userStore = useUserStore();
+const isSettingsOpen = ref(false);
 </script>
 
 <template>
@@ -133,12 +134,17 @@ const userStore = useUserStore();
             </BreadcrumbList>
           </Breadcrumb>
           <Separator orientation="vertical" class="ml-auto data-[orientation=vertical]:h-4" />
+          <Button variant="ghost" size="icon" class="h-8 w-8" aria-label="Paramètres du dashboard" @click="isSettingsOpen = true">
+            <LucideSettings class="h-4 w-4" />
+          </Button>
           <ThemeToggle />
         </div>
       </header>
       <div class="flex-1 overflow-y-auto">
         <slot />
       </div>
+
+      <DashboardSettings v-model:open="isSettingsOpen" />
     </SidebarInset>
   </SidebarProvider>
 </template>

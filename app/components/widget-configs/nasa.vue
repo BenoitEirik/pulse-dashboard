@@ -11,7 +11,7 @@ const apodMode = ref<'today' | 'random'>('today');
 
 function submit() {
   const params: Record<string, any> = {
-    api_key: 'DEMO_KEY',
+    api_key: useRuntimeConfig().public.nasaApiKey || 'DEMO_KEY', // DEMO_KEY is public but rate limited
   };
 
   if (apodMode.value === 'random') {

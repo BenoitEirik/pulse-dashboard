@@ -63,6 +63,14 @@ export const useDashboardStore = defineStore(
       }
     }
 
+    function replaceWidgets(newWidgets: DashboardWidget[]) {
+      widgets.value = newWidgets;
+    }
+
+    function mergeWidgets(newWidgets: DashboardWidget[]) {
+      widgets.value.push(...newWidgets);
+    }
+
     return {
       widgets,
       fetchWidgetData,
@@ -70,6 +78,8 @@ export const useDashboardStore = defineStore(
       removeWidget,
       updateWidget,
       moveWidget,
+      replaceWidgets,
+      mergeWidgets,
     };
   },
   {

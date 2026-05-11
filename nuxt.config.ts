@@ -75,11 +75,12 @@ export default defineNuxtConfig({
       tmdbApiBase: 'https://api.themoviedb.org/3',
       tmdbAccessToken: '',
       nasaApiBase: 'https://api.nasa.gov',
+      nasaApiKey: '',
     },
   },
   vite: {
     optimizeDeps: {
-      include: ['vue-chartjs', 'chart.js'],
+      include: ['vue-chartjs', 'chart.js', 'zod'],
     },
   },
 });
