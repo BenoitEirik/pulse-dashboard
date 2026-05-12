@@ -12,7 +12,7 @@ const remove = () => store.removeWidget(props.widgetId);
 <template>
   <div class="group relative h-full w-full">
     <div
-      class="absolute top-2 right-2 z-10 flex gap-1 opacity-0 transition-opacity group-hover:opacity-100">
+      class="absolute top-2 right-2 z-10 flex gap-1.5 opacity-0 transition-all duration-200 group-hover:translate-y-0 group-hover:opacity-100">
       <Button
         variant="secondary"
         size="icon"
@@ -32,7 +32,7 @@ const remove = () => store.removeWidget(props.widgetId);
     </div>
 
     <div
-      class="drag-handle absolute top-2 left-2 z-10 cursor-grab opacity-0 group-hover:opacity-100 active:cursor-grabbing">
+      class="drag-handle absolute top-2 left-2 z-10 cursor-grab opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100 active:cursor-grabbing">
       <LucideGripVertical class="text-muted-foreground h-4 w-4" />
     </div>
 

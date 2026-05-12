@@ -50,16 +50,16 @@ function onCatalogSelect(type: WidgetType) {
 </script>
 
 <template>
-  <div class="flex flex-col space-y-4 p-4 lg:space-y-8 lg:p-8">
+  <div class="flex flex-col space-y-6 p-6 lg:space-y-10 lg:p-10">
     <div class="flex w-full shrink-0 justify-end">
-      <Button variant="outline" size="sm" @click="openCatalog"
-        ><LucidePlus /><span>Ajouter un widget</span></Button
+      <Button variant="outline" size="default" @click="openCatalog"
+        ><LucidePlus class="h-4 w-4" /><span>Ajouter un widget</span></Button
       >
     </div>
 
     <div
       ref="gridRef"
-      class="grid h-full grid-cols-1 gap-4 overflow-y-auto lg:grid-cols-2 lg:gap-6 2xl:grid-cols-3">
+      class="grid h-full grid-cols-1 gap-6 overflow-y-auto lg:grid-cols-2 lg:gap-8 2xl:grid-cols-3 2xl:gap-10">
       <WidgetShell
         v-for="widget in store.widgets"
         :key="widget.id"
@@ -67,13 +67,13 @@ function onCatalogSelect(type: WidgetType) {
         :widget-id="widget.id" />
 
       <button
-        class="border-border hover:bg-accent/50 group flex min-h-[200px] flex-col items-center justify-center rounded-xl border-2 border-dashed transition-colors"
+        class="border-border hover:border-primary/30 hover:bg-accent/50 group flex min-h-[240px] flex-col items-center justify-center rounded-xl border-2 border-dashed transition-all"
         @click="openCatalog">
         <div
-          class="bg-primary/10 text-primary rounded-full p-3 transition-transform group-hover:scale-110">
+          class="bg-primary/10 text-primary group-hover:bg-primary/20 rounded-full p-3 transition-all group-hover:scale-110">
           <lucidePlus class="h-6 w-6" />
         </div>
-        <span class="text-muted-foreground mt-2 text-sm font-medium">Ajouter un widget</span>
+        <span class="text-muted-foreground mt-3 text-sm font-medium">Ajouter un widget</span>
       </button>
     </div>
 
@@ -97,15 +97,18 @@ function onCatalogSelect(type: WidgetType) {
 
 <style scoped>
 :deep(.sortable-ghost) {
-  opacity: 0.4;
-  background-color: hsl(var(--accent));
+  opacity: 0.35;
+  background-color: hsl(var(--primary) / 0.15);
   border-radius: 0.75rem;
+  outline: 2px dashed hsl(var(--primary) / 0.3);
+  outline-offset: 2px;
 }
 :deep(.sortable-drag) {
   opacity: 1;
   box-shadow:
-    0 10px 15px -3px rgb(0 0 0 / 0.1),
-    0 4px 6px -4px rgb(0 0 0 / 0.1);
+    0 20px 25px -5px rgb(0 0 0 / 0.15),
+    0 8px 10px -6px rgb(0 0 0 / 0.1);
   border-radius: 0.75rem;
+  transform: scale(1.02);
 }
 </style>

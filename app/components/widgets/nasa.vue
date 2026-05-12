@@ -35,9 +35,7 @@ function openImage() {
   <Card class="flex h-full w-full flex-col overflow-hidden transition-all">
     <CardHeader class="pb-2">
       <div class="flex items-center justify-between">
-        <CardTitle class="text-base font-medium md:text-lg lg:text-xl xl:text-2xl">
-          NASA - Image du jour
-        </CardTitle>
+        <CardTitle class="text-base font-semibold md:text-lg"> NASA - Image du jour </CardTitle>
         <Icon name="simple-icons:nasa" class="text-primary h-10 w-10" />
       </div>
     </CardHeader>

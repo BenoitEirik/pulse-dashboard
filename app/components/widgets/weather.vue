@@ -25,8 +25,8 @@ const weatherData = ref<WeatherResponse | null>(null);
 <template>
   <Card class="size-full overflow-hidden transition-all">
     <CardHeader class="flex items-start justify-between gap-2">
-      <CardTitle class="text-base font-medium md:text-lg lg:text-xl xl:text-2xl"> Météo </CardTitle>
-      <img :src="iconUrl" class="h-24 w-24" />
+      <CardTitle class="text-base font-semibold md:text-lg"> Météo </CardTitle>
+      <img :src="iconUrl" class="h-20 w-20" />
     </CardHeader>
 
     <CardContent class="h-full">
@@ -39,11 +39,12 @@ const weatherData = ref<WeatherResponse | null>(null);
         v-else-if="widget?.status === 'success' && weatherData"
         class="flex h-full flex-col justify-center">
         <div class="flex items-baseline gap-1">
-          <span class="text-3xl font-bold">
-            {{ Math.round(weatherData.current.temperature_2m) }} °C
+          <span class="text-foreground text-5xl font-bold tracking-tight">
+            {{ Math.round(weatherData.current.temperature_2m)
+            }}<span class="text-muted-foreground text-2xl font-medium">°C</span>
           </span>
         </div>
-        <p class="text-muted-foreground mt-1 text-base">
+        <p class="text-muted-foreground mt-2 text-base">
           Vent : {{ weatherData.current.wind_speed_10m }} km/h
         </p>
       </div>

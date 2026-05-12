@@ -45,9 +45,7 @@ function posterUrl(path: string | null) {
   <Card class="flex h-full w-full flex-col overflow-hidden transition-all">
     <CardHeader class="pb-2">
       <div class="flex items-center justify-between">
-        <CardTitle class="text-base font-medium md:text-lg lg:text-xl xl:text-2xl">
-          Tendances
-        </CardTitle>
+        <CardTitle class="text-base font-semibold md:text-lg"> Tendances </CardTitle>
         <Icon name="simple-icons:themoviedatabase" class="text-primary h-5 w-5" />
       </div>
       <div class="mt-1 flex items-center gap-1.5">

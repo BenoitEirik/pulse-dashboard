@@ -51,7 +51,7 @@ const isSettingsOpen = ref(false);
               class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
               <div
                 class="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-                <component :is="data.app.logo" class="size-4" />
+                <component :is="data.app.logo" class="size-5" />
               </div>
               <div class="grid flex-1 text-left text-sm leading-tight">
                 <span class="truncate font-semibold">{{ data.app.title }}</span>
@@ -134,7 +134,12 @@ const isSettingsOpen = ref(false);
             </BreadcrumbList>
           </Breadcrumb>
           <Separator orientation="vertical" class="ml-auto data-[orientation=vertical]:h-4" />
-          <Button variant="ghost" size="icon" class="h-8 w-8" aria-label="Paramètres du dashboard" @click="isSettingsOpen = true">
+          <Button
+            variant="ghost"
+            size="icon"
+            class="h-8 w-8"
+            aria-label="Paramètres du dashboard"
+            @click="isSettingsOpen = true">
             <LucideSettings class="h-4 w-4" />
           </Button>
           <ThemeToggle />

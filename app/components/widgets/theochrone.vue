@@ -23,9 +23,7 @@ const iframeUrl = computed(() => {
   <Card class="flex h-full w-full flex-col overflow-hidden transition-all">
     <CardHeader class="pb-2">
       <div class="flex items-center justify-between">
-        <CardTitle class="text-base font-medium md:text-lg lg:text-xl xl:text-2xl">
-          Théochrone
-        </CardTitle>
+        <CardTitle class="text-base font-semibold md:text-lg"> Théochrone </CardTitle>
         <Icon name="lucide:calendar-days" class="text-primary h-5 w-5" />
       </div>
     </CardHeader>

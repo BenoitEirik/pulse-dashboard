@@ -106,11 +106,10 @@ const createTopBottomGradient = (ctx: CanvasRenderingContext2D, area: any) => {
   <Card class="flex h-full w-full flex-col overflow-hidden transition-all">
     <CardHeader>
       <div class="flex items-center justify-between">
-        <CardTitle class="text-base font-medium md:text-lg lg:text-xl xl:text-2xl">
-          Crypto
-        </CardTitle>
-        <div v-if="rawData?.prices?.length" class="font-mono text-lg font-bold">
-          {{ rawData.prices?.[rawData.prices.length - 1]?.[1]?.toLocaleString() }} €
+        <CardTitle class="text-base font-semibold md:text-lg"> Crypto </CardTitle>
+        <div v-if="rawData?.prices?.length" class="font-mono text-xl font-bold tracking-tight">
+          {{ rawData.prices?.[rawData.prices.length - 1]?.[1]?.toLocaleString() }}
+          <span class="text-muted-foreground text-sm font-medium">€</span>
         </div>
       </div>
     </CardHeader>
